@@ -94,11 +94,12 @@ class CommandsInterpreter(object):
 class EasyShieldCommandInterpreter(CommandsInterpreter):
 
     feedback_cube = Cube_Led_Feedback()
-
+    
+   
     def hear_user(self):
-
+        
         ser = serial.Serial('/dev/ttyACM1', 9600)
-
+        
         while 1:
 
             line = ser.readline()
@@ -113,16 +114,16 @@ class EasyShieldCommandInterpreter(CommandsInterpreter):
                 self.feedback_cube.do_feedback(self.feedback.done)
 
 
-def get_job_by_stream_data(self, data):
-    data = data.split(';')
-    plugin = data[1]
-    module = data[2]
-    instruction = data[3]
-    parameter = data[4]
+    def get_job_by_stream_data(self, data):
+       data = data.split(';')
+       plugin = data[1]
+       module = data[2]
+       instruction = data[3]
+       parameter = data[4]
 
-    return Job("", module, plugin, instruction, parameter, "", Job.create)
+       return Job("", module, plugin, instruction, parameter, "", Job.create)
 
 
-def test_send_command(self):
-    job = Job("", "module", "test", "llistar", "1", "", Job.create)
-    self.send_job_to_server(job)
+    def test_send_command(self):
+       job = Job("", "module", "test", "llistar", "1", "", Job.create)
+       self.send_job_to_server(job)

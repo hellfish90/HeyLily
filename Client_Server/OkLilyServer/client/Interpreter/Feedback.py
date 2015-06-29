@@ -26,6 +26,8 @@ class Feedback(object):
 
 class Easy_VR_Feedback(Feedback):
 
+    ser = serial.Serial('/dev/ttyACM1', 9600)
+
     def do_feedback(self, feedback):
 
         if feedback == self.not_understand:
@@ -45,12 +47,9 @@ class Easy_VR_Feedback(Feedback):
 
         if feedback == self.error:
             #Do something more
-            ser = serial.Serial('/dev/ttyACM1', 9600)
-            cube = serial.Serial('/dev/ttyACM0',9600)
-            cube.write("2")
-            ser.write("1")
-            time.sleep(0.5)
-            cube.write("3")
+  
+            self.ser.write("1")
+            
             print "something are wrong"
 
         if feedback == self.no_connection_with_server:
@@ -59,20 +58,20 @@ class Easy_VR_Feedback(Feedback):
 
 class Cube_Led_Feedback(Feedback):
 
+    cube = serial.Serial('/dev/ttyACM0', 9600)
+
     def do_feedback(self, feedback):
 
         if feedback == self.received:
-            cube = serial.Serial('/dev/ttyACM0', 9600)
-            cube.write("1")
-
+            self.cube.write("1")
+            print "cube received"
         if feedback == self.you_say_something:
             print "You say something"
 
         if feedback == self.done:
-            cube = serial.Serial('/dev/ttyACM0', 9600)
-            cube.write("1")
+            self.cube.write("0")
             time.sleep(0.5)
-            cube.write("3")
+            self.cube.write("3")
             print "Done"
 
         if feedback == self.doing:
