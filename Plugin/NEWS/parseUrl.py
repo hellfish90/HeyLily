@@ -3,9 +3,9 @@ import io
 import unicodedata
 import sys
 
-file = open("festival_news.festival","wb")
+file = open("/home/pi/Plugin/NEWS/festival_news.festival","wb")
 
-fchanels=open('chanels.conf')
+fchanels=open("/home/pi/Plugin/NEWS/chanels.conf")
 lines=fchanels.readlines()
 rss_data=lines[int(sys.argv[1])-1]
 
