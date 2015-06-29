@@ -1,0 +1,26 @@
+
+<button type="button" onclick="location.href='/server/module/create'">New Module</button>
+
+<ul >
+    {% for module in module_list %}
+
+    <li>
+
+        <ul>
+
+            <H3> {{module.name}}</H3>
+
+            <h3> {{module.ip}}</h3>
+            <button type="button" onclick="location.href='/server/module/{{module.pk}}/modify'">Modify</button>
+            <H5>Plugins</H5>
+            <H6>{% for plugin in module.plugins.all %}</H6>
+                <li>{{plugin.name}}</li>
+                <button type="button" onclick="location.href='/server/plugin/{{plugin.pk}}/modify'">Modify</button>
+                {% endfor %}
+        </ul>
+
+    </li>
+    {% empty %}
+    <li>No hi han moduls introduïts</li>
+    {% endfor %}
+</ul>

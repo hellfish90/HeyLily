@@ -1,0 +1,17 @@
+
+<button type="button" onclick="location.href='/server/instruction/create'">Create Instruction</button>
+
+<ul >
+    {% for instruction in instruction_list %}
+    <li>
+        <ul>
+            <H3> {{instruction.name}}</H3>
+            <button type="button" onclick="location.href='/server/instruction/{{instruction.pk}}/modify'">Modify</button>
+
+        </ul>
+
+    </li>
+    {% empty %}
+    <li>No hi han plugins introduïts</li>
+    {% endfor %}
+</ul>

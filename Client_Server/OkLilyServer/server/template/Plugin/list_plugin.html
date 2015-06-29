@@ -1,0 +1,23 @@
+
+<button type="button" onclick="location.href='/server/plugin/create'">Crear Plugin</button>
+
+<ul >
+    {% for plugin in plugin_list %}
+    <li>
+        <ul>
+
+            <H3> {{plugin.name}}</H3>
+            <button type="button" onclick="location.href='/server/plugin/{{plugin.pk}}/modify'">Modify</button>
+            <H5>Instructions</H5>
+            <H6>{% for instruction in plugin.instructions.all %}</H6>
+                <li>{{instruction.name}}</li>
+                <button type="button" onclick="location.href='/server/instruction/{{instruction.pk}}/modify'">Modify</button>
+                {% endfor %}
+
+        </ul>
+
+    </li>
+    {% empty %}
+    <li>No hi han plugins introduïts</li>
+    {% endfor %}
+</ul>
